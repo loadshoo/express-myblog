@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <link rel="stylesheet" media="screen" href="/css/bootstrap.min.css">
+        <style type="text/css" media="screen">
+        .container {
+        margin-top: 40px;
+        }
+        .media-object {
+        width: 100px;
+        height: 100px;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <% data.forEach((item, index) => { %>
+            <div class="media">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object" src="<%= item.imgUrl %>" alt="">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading"><%= item.title %></h4>
+                    <p><%= item.content %></p>
+                </div>
+            </div>
+            <% }) %>
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li>
+                        <a id="last" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li><a class="tag" href="#">1</a></li>
+                    <li><a class="tag" href="#">2</a></li>
+                    <li><a class="tag" href="#">3</a></li>
+                    <li><a class="tag" href="#">4</a></li>
+                    <li><a class="tag" href="#">5</a></li>
+                    <li>
+                        <a id="next" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <script type="text/javascript">
+            let page = 0;
+            let last = document.getElementById('last');
+            let next = document.getElementById('next');
+            let tag = document.getElementsByClassName('tag');
+
+            function http(method = 'GET', url) {
+                var xhr = new XMLHttpRequest();
+                xhr.open(method, url, true);
+                xhr.send();
+                xhr.onreadystatechange = function() {
+                    if(xhr.readyState == 4) {
+                        console.log(xhr.responseText);
+                    }
+                }
+            };
+            
+            last.onclick = function() {
+                if(page <= 0) {
+                    alert('已经是第一页')
+                } else {
+                    let url = 'http://localhost:3000/search/page?page=' + page;
+                    http('GET', url);
+                }
+            };
+
+            next.onclick = function() {
+                console.log('next')
+                page++;
+                let url = 'http://localhost:3000/search/page?page=' + page;
+                http('GET', url);
+            }
+        </script>
+    </body>
+</html>

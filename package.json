@@ -1,0 +1,26 @@
+{
+  "name": "test",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "mysql2": "^1.6.5",
+    "pug": "^2.0.4",
+    "sequelize": "^5.10.2"
+  },
+  "apidoc": {
+    "name": "apidoc-example",
+    "version": "0.3.0",
+    "description": "apiDoc example project",
+    "title": "Custom apiDoc browser title",
+    "url" : "https://api.github.com/v1"
+  }
+}
