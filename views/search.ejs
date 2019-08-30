@@ -18,32 +18,32 @@
     <body>
         <div class="container">
             <% data.forEach((item, index) => { %>
-            <div class="media">
-                <div class="media-left">
-                    <a href="#">
-                        <img class="media-object" src="<%= item.imgUrl %>" alt="">
-                    </a>
+            <a href="/article?code=<%= item.code %>">
+                <div class="media">
+                    <div class="media-left">
+                        <img class="media-object" src="http://pimg.39.net/PictureLib/A/CT1500016770/CT1500016777/2013-02-25/201302251521383264.jpg" alt="">
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading"><%= item.title %></h4>
+                        <p><%= item.content %></p>
+                    </div>
                 </div>
-                <div class="media-body">
-                    <h4 class="media-heading"><%= item.title %></h4>
-                    <p><%= item.content %></p>
-                </div>
-            </div>
+            </a>
             <% }) %>
             <nav aria-label="Page navigation">
                 <ul class="pagination">
                     <li>
-                        <a id="last" href="#" aria-label="Previous">
+                        <a id="last" href="/search?text=<%= req.text %>&page=<%= parseInt(req.page) - 1 %>" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
-                    <li><a class="tag" href="#">1</a></li>
-                    <li><a class="tag" href="#">2</a></li>
-                    <li><a class="tag" href="#">3</a></li>
-                    <li><a class="tag" href="#">4</a></li>
-                    <li><a class="tag" href="#">5</a></li>
+                    <li><a class="tag" href="/search?text=<%= req.text %>&page=1">1</a></li>
+                    <li><a class="tag" href="/search?text=<%= req.text %>&page=2">2</a></li>
+                    <li><a class="tag" href="/search?text=<%= req.text %>&page=3">3</a></li>
+                    <li><a class="tag" href="/search?text=<%= req.text %>&page=4">4</a></li>
+                    <li><a class="tag" href="/search?text=<%= req.text %>&page=5">5</a></li>
                     <li>
-                        <a id="next" href="#" aria-label="Next">
+                        <a id="next" href="/search?text=<%= req.text %>&page=<%= parseInt(req.page) + 1 %>" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>
@@ -51,37 +51,37 @@
             </nav>
         </div>
         <script type="text/javascript">
-            let page = 0;
-            let last = document.getElementById('last');
-            let next = document.getElementById('next');
-            let tag = document.getElementsByClassName('tag');
+            // let page = 0;
+            // let last = document.getElementById('last');
+            // let next = document.getElementById('next');
+            // let tag = document.getElementsByClassName('tag');
 
-            function http(method = 'GET', url) {
-                var xhr = new XMLHttpRequest();
-                xhr.open(method, url, true);
-                xhr.send();
-                xhr.onreadystatechange = function() {
-                    if(xhr.readyState == 4) {
-                        console.log(xhr.responseText);
-                    }
-                }
-            };
+            // function http(method = 'GET', url) {
+            //     var xhr = new XMLHttpRequest();
+            //     xhr.open(method, url, true);
+            //     xhr.send();
+            //     xhr.onreadystatechange = function() {
+            //         if(xhr.readyState == 4) {
+            //             // console.log(xhr.responseText);
+            //         }
+            //     }
+            // };
             
-            last.onclick = function() {
-                if(page <= 0) {
-                    alert('已经是第一页')
-                } else {
-                    let url = 'http://localhost:3000/search/page?page=' + page;
-                    http('GET', url);
-                }
-            };
+            // last.onclick = function() {
+            //     if(page <= 0) {
+            //         alert('已经是第一页')
+            //     } else {
+            //         page--;
+            //         let url = 'http://localhost:3000/search?page=' + page;
+            //         http('GET', url);
+            //     }
+            // };
 
-            next.onclick = function() {
-                console.log('next')
-                page++;
-                let url = 'http://localhost:3000/search/page?page=' + page;
-                http('GET', url);
-            }
+            // next.onclick = function() {
+            //     page++;
+            //     let url = 'http://localhost:3000/search?page=' + page;
+            //     http('GET', url);
+            // }
         </script>
     </body>
 </html>

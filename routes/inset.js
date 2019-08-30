@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/updata', function(req, res, next) {
-    console.log(req.query)
+    // console.log(req.query,'')
     model.create({
         title: req.query.title,
         content: req.query.content,

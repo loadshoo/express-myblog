@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>particles.js</title>
+        <meta name="description" content="particles.js is a lightweight JavaScript library for creating particles.">
+        <meta name="author" content="Vincent Garreau" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" media="screen" href="/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div><%= remind.info %></div>
+        <div>
+            <ul id="paragraph">
+                <% paragraph.forEach((item,index) => { %>
+                <li><%= item.content %></li>
+                <% }) %>
+            </ul>
+        </div>
+        <!-- scripts -->
+        <script src="js/particles.min.js"></script>
+        <script src="https://cdn.bootcss.com/jquery/1.3.1/jquery.min.js"></script>
+        <script src="js/app.js"></script>
+        <script type="text/javascript">
+            // $('#paragraph').html()
+        </script>
+    </body>
+</html>
