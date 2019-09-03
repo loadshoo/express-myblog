@@ -4,7 +4,7 @@ const model = require('../public/module/serach.js')
 
 
 router.get('/', function(req, res, next) {
-    res.render('inset',{data: 'sssssssss'})
+    res.render('inset',{data: res})
 });
 
 router.get('/updata', function(req, res, next) {
