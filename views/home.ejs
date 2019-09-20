@@ -40,26 +40,29 @@
         <div class="center-box col-lg-6 col-md-6 col-sm-8 col-xs-12">
             <div class="container-fluid">
                 <%- include('swiper') %>
+                
+                <% datas.forEach((item, index) => { %>
                 <div class="media content">
                     <div class="media-left media-middle">
-                        <a href="#">
+                        <a href="/article/code/<%= item.code %>">
                             <img class="media-object" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567489592943&di=d044e546c578c2185677c5d6ee19a2d4&imgtype=0&src=http%3A%2F%2Fmarket.designmodo.com%2Fwp-content%2Fuploads%2F2015%2F06%2Fbootstrap-logo.png" alt="">
                         </a>
                     </div>
                     <div class="media-body content-txt media-middle">
-                        <a href="#">
+                        <a href="/article/code/<%= item.code %>">
                             <h4 class="media-heading">
-                                <p class="content-title f-left">Middle aligned media</p>
+                                <p class="content-title f-left"><%= item.title %></p>
                                 <p class="content-label f-right">
                                     <span class="label label-success">bootstarp</span>
                                 </p>
                                 <div class="clear"></div>
                             </h4>
-                            <p class="content-txt-info">这是bootst这是bootstarp响应式框架这是bootstarp响应式框架这是bootstarp响应式框架这是bootstarp响应式这是bootst这是bootstarp响应式框架这是bootstarp响应式框架这是bootstarp响应式框架这是bootstarp响应式框架arp响应式框架框架arp响应式框架</p>
-                            <p class="author"><span>牛舍</span>&nbsp|&nbsp<span>time</span></p>
+                            <p class="content-txt-info"><%= item.info %></p>
+                            <p class="author"><span>牛舍</span>&nbsp|&nbsp<span>2019/9/16</span></p>
                         </a>
                     </div>
                 </div>
+                <% }) %>
             </div>
         </div>
         <div class="right-box col-lg-3 col-md-3 col-sm-12 col-xs-12 right">

@@ -35,6 +35,11 @@ a:hover, a:active, a:visited, a:focus {
     background-color: #fff;
 }
 
+.header-box .navbar-toggle {
+    background: #fff;
+}
+
+
 .left {
     float: left;
 }

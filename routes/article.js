@@ -2,32 +2,46 @@ var express = require('express');
 var router = express.Router();
 const remind = require('../public/module/remind.js')
 const paragraph = require('../public/module/paragraph.js')
+const Sequelize = require('sequelize');
+const func = require('../public/js/utils.js');
 
+remind.hasMany(paragraph, {
+    foreignKey: 'code',
+    sourceKey: 'code',
+    as: 'paragraph'
+})
+paragraph.belongsTo(remind, {
+    foreignKey: 'code',
+    targetKey: 'code',
+    as: 'remind'
+})
 
-router.get('/', function(req, res, next) {
+router.get('/code/*', function(req, res, next) {
+    // console.log(req.params[0],'req');
     let remindData;
-    remind.findAll({
+    remind.findAndCountAll({
             where: {
-                code: req.query.code
-            }
+                code: req.params[0]
+            },
+            include: [{
+                model: paragraph,
+                as: 'paragraph',
+                'where': {
+                    'code': req.params[0]
+                },
+            }]
         })
         .then(data => {
-            // console.log(data[0].dataValues,'rrrr')
-            // res.render('article', { remind: data[0].dataValues });
-            remindData = data[0].dataValues;
-            return paragraph.findAll({
-                where: {
-                    code: req.query.code
-                }
-            })
-        })
-        .then(data => {
-            res.render('article', { remind: remindData, paragraph: data });
+            datas = func.jsonPaser(data.rows[0]);
+            console.log(datas,'ssss')
+            // console.log(data.rows[0].remind.dataValues.info, 'ffffff')
+            res.render('article', { datas: datas });
         })
         .catch(err => {
             console.log(err)
         })
 });
+
 
 // router.get('/', function(req, res, next) {
 //     paragraph.findAll({

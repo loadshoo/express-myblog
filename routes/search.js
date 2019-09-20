@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const Sequelize = require('sequelize');
 const model = require('../public/module/serach.js');
+const remind = require('../public/module/remind.js');
 const Op = Sequelize.Op;
 
 /* GET users listing. */
