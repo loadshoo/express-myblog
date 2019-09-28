@@ -1,25 +1,18 @@
 const Sequelize = require('sequelize');
-const db = require('./db.js')
+const db = require('./db.js');
 
-
-const Serach = db().define('title', {
+const User = db().define('user', {
     id: {
         type: Sequelize.INTEGER(11),
         primaryKey: true
     },
-    code: {
-        type: Sequelize.STRING(8)
+    username: {
+        type: Sequelize.STRING(11)
     },
-    url: {
-        type: Sequelize.STRING(500)
+    password: {
+        type: Sequelize.STRING(11)
     },
-    title: {
-        type: Sequelize.STRING(500)
-    },
-    category: {
-        type: Sequelize.STRING(500)
-    },
-    stick: {
+    type: {
         type: Sequelize.INTEGER(2)
     },
     createdAt: {
@@ -31,7 +24,7 @@ const Serach = db().define('title', {
 }, {
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    tableName: 'title',
+    tableName: 'user',
 })
 
-module.exports = Serach;
+module.exports = User;

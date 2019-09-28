@@ -16,7 +16,7 @@ paragraph.belongsTo(remind, {
     as: 'remind'
 })
 
-router.get('/code/*', function(req, res, next) {
+router.get('/code/*',function(req, res, next) {
     // console.log(req.params[0],'req');
     let remindData;
     remind.findAndCountAll({

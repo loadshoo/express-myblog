@@ -14,6 +14,13 @@ const utils = {
         } else if (Object.prototype.toString.call(data) === '[object Object]') {
             return data.toJSON()
         }
+    },
+    jsonContent(data, code = 0, msg = 'success') {
+        return {
+            code,
+            data,
+            msg
+        }
     }
 }
 
