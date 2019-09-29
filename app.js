@@ -50,19 +50,7 @@ app.use(function(req, res, next) {
 });
 
 //动态设置路由
-
-routers.forEach((v,i,arr) => {
-    let urlPath = './routes/'+v;
-    let routerUrl;
-    if(v === 'index') {
-        routerUrl = "/"
-    } else {
-        routerUrl = '/'+v;
-    }
-    // console.log(urlPath, routerUrl, 'path')
-    let pathDir = require(urlPath);
-    app.use(routerUrl, pathDir);
-})
+routers(app, 'routes');
 
 
 // catch 404 and forward to error handler
