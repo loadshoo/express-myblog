@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
-const model = require('../public/module/serach.js');
-const remind = require('../public/module/remind.js');
-const func = require('../public/js/utils.js');
+const model = require('../module/serach.js');
+const remind = require('../module/remind.js');
+const func = require('../common/utils.js');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
@@ -104,10 +104,7 @@ router.post('/back/getArticle',function(req, res, next){
                     }
                 })
             })
-            let datas = {};
-            datas.data = title;
-            datas.code = 0;
-            datas.msg = "成功"
+            let datas = func.jsonContent(title);
             // console.log(datas, 'cccc')
             res.status(200).json(datas);
         })

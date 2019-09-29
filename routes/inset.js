@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const model = require('../public/module/serach.js')
+const model = require('../module/serach.js')
 
 
 router.get('/', function(req, res, next) {

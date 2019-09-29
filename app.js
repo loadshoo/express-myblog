@@ -3,18 +3,14 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var routers = require('./common/router.js')
+
 
 var jwt = require('jsonwebtoken');
 
-var indexRouter = require('./routes/index');
-var homeRouter = require('./routes/home');
-var searchRouter = require('./routes/search');
-var insetRouter = require('./routes/inset');
-var articleRouter = require('./routes/article');
-var loginRouter = require('./routes/login');
-
-
 var app = express();
+
+// console.log(fs.readdirSync('./routes'),'path')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -28,7 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //请求拦截，验证token
 app.use(function(req, res, next) {
-    if (req.path !== '/login') {
+    if (req.path !== '/login' && req.path.indexOf('back') != -1) {
         var token = req.headers['authorization'].split(' ')[1];
         console.log('token:',token)
         if (token) {
@@ -53,12 +49,20 @@ app.use(function(req, res, next) {
     }
 });
 
-app.use('/', indexRouter);
-app.use('/home', homeRouter);
-app.use('/inset', insetRouter);
-app.use('/search', searchRouter);
-app.use('/article', articleRouter);
-app.use('/login', loginRouter);
+//动态设置路由
+
+routers.forEach((v,i,arr) => {
+    let urlPath = './routes/'+v;
+    let routerUrl;
+    if(v === 'index') {
+        routerUrl = "/"
+    } else {
+        routerUrl = '/'+v;
+    }
+    // console.log(urlPath, routerUrl, 'path')
+    let pathDir = require(urlPath);
+    app.use(routerUrl, pathDir);
+})
 
 
 // catch 404 and forward to error handler

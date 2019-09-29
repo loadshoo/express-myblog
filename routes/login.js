@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const func = require('../public/js/utils.js');
-const User = require('../public/module/user.js');
+const func = require('../common/utils.js');
+const User = require('../module/user.js');
 const Sequelize = require('sequelize');
 var jwt = require('jsonwebtoken');
 
